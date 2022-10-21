@@ -2,7 +2,7 @@ import express from "express";
 import { Server as IOServer }  from "socket.io";
 import __dirname from "./utils.js";
 import session from "express-session";
-import mongoStore from "connect-mongo";
+import MongoStore from "connect-mongo";
 import mongoose from "mongoose";
 import passport from "passport";
 
@@ -65,7 +65,7 @@ if (isCluster && cluster.isPrimary) {
     //Config de sessions almacenadas en mongo ATLAS.
     const mongoOptions = {useNewUrlParser: true, useUnifiedTopology: true};
     app.use(session({
-        store: mongoStore.create({mongoUrl: config.MONGO_URL, mongoOptions}),
+        store: MongoStore.create({ mongoUrl: config.MONGO_URL, mongoOptions }),
         secret: "secretox",
         resave: false,
         saveUninitialized: false,
